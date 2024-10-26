@@ -1,7 +1,15 @@
 from django.db import models
 
 class Type(models.Model):
-    type = models.CharField(max_length=10)
+    TROPHY = 'trophy'
+    MEMENTO = 'memento'
+    
+    TYPE_CHOICES = [
+        (TROPHY, 'Trophy'),
+        (MEMENTO, 'Memento'),
+    ]
+    
+    type = models.CharField(max_length=10, choices=TYPE_CHOICES, unique=True)  # Add unique=True to prevent duplicates
 
     def __str__(self):
         return self.type
