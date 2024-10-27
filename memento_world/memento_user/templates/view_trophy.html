@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h1>Memento Items</h1>
+    <h1 class="text-center">Trophy Items</h1> <!-- Centered heading -->
     {% if trophy %}
         <div class="row">
             {% for item in trophy %}
@@ -18,9 +18,9 @@
                         {% else %}
                             <p>No image available.</p>
                         {% endif %}
-                        <div class="card-body">
+                        <div class="card-body text-center"> <!-- Centering text inside card body -->
                             <h5 class="card-title">{{ item.name }}</h5>
-                            <p class="card-text">${{ item.price }}</p> <!-- Include currency symbol if needed -->
+                            <p class="card-text">₹{{ item.price }}</p> <!-- Changed dollar sign to rupee symbol -->
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
             {% endfor %}
         </div>
     {% else %}
-        <p>No memento items available.</p>  <!-- This will show if there are no items -->
+        <p>No memento items available.</p>  <!-- Message if there are no items -->
     {% endif %}
 </div>
 {% endblock %}

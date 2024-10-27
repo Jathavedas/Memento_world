@@ -8,7 +8,6 @@ def home(request):
     return render(request, "home.html")
 
 
-
 def view_trophy(request):
     memento_type = Type.objects.filter(type='trophy').first()
     if memento_type:
