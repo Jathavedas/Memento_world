@@ -1,0 +1,36 @@
+{% extends 'baseusr.html' %}
+{% load static %}
+
+{% block title %}View Mementos{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Memento Items</h1>
+    {% if memento %}
+        <div class="row">
+            {% for item in memento %}
+                <div class="col-md-3">
+                    <div class="card mb-4">
+                        {% if item.image %}
+                            <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+                                <img src="{{ item.image.url }}" alt="{{ item.name }}" class="img-thumbnail" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                            </div>
+                        {% else %}
+                            <p>No image available.</p>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <p class="card-text">${{ item.price }}</p> <!-- Include currency symbol if needed -->
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:4 and not forloop.last %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No memento items available.</p>  <!-- This will show if there are no items -->
+    {% endif %}
+</div>
+{% endblock %}

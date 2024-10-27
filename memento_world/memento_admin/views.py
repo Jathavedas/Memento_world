@@ -30,7 +30,7 @@ def loginview(request):
 @login_required
 def logout_(request):
     logout(request)
-    return redirect('memento_admin:login')
+    return redirect('memento_user:home')
 
 
 #add.html
