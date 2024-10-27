@@ -4,6 +4,8 @@ from .import views
 urlpatterns = [
    
     path('',views.upload_item,name='add'),
+    path('accounts/login/',views.loginview,name="login"),
+    path('logout',views.logout_,name="logout"),
     path('trophy',views.trophy_list,name='trophy'),
     path('memento',views.memento_list,name='memento'),
     path('edit_search', views.update, name='update'),  

@@ -2,15 +2,35 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .forms import ItemsForm
 from .models import Items,Type
 from django.http import HttpResponse 
+from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate,login,logout
+
+
 # Create your views here.
+@login_required
 
+def loginview(request):
+    usname=request.POST["username"]
+    passw=request.POST["password"]
+    user=authenticate(request,username=usname,password=passw)
+    if user is not None:
+        login(request,user)
+        return redirect('home')
+    else:
+        return render(request,"login.html",{"msg":"Invalid details"})
 
+def logout_(request):
+    logout(request)
+    return redirect('login')
 
 
 #add.html
+@login_required
 def add(request):
     return render(request,"adminadd.html")
 
+@login_required
 def upload_item(request):
     if request.method == 'POST':
         form = ItemsForm(request.POST, request.FILES)
@@ -22,7 +42,7 @@ def upload_item(request):
     return render(request, 'adminadd.html', {'form': form})
 
 
-
+@login_required
 def memento_list(request):
     # Get the search query and sort option from the POST request
     search_query = request.POST.get('search', '')
@@ -54,15 +74,11 @@ def memento_list(request):
     }
     return render(request, 'admin_memento.html', context)
 
-    # Render the template with the filtered and sorted items
-    # return render(request, 'admin_memento.html', {
-    #     'Memento': items,  # Make sure to match the context variable name in your template
-    #     'search_query': search_query,
-    #     'sort_by': sort_by,
-    # })
+ 
 
 
 #view memento
+@login_required
 def trophy_list(request):
    
     # Get the search query and sort option from the POST request
@@ -98,7 +114,7 @@ def trophy_list(request):
 
 
 # update
-
+@login_required
 def update(request):
     if request.method == "POST":
         name = request.POST.get('name', '').strip()
@@ -114,7 +130,7 @@ def update(request):
         return render(request, "update.html")
 
 #update functionality
-
+@login_required
 def updatedata(request):
     if request.method == "POST":
         original_name = request.POST.get('original_name', '').strip()
@@ -156,7 +172,7 @@ def updatedata(request):
 
 
 #Delete
-
+@login_required
 def delete(request):
     if request.method == "POST":
         name = request.POST.get('name', '').strip()

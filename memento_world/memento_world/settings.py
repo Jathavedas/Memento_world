@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'memento_user',
-    'memento_admin'
+    'memento_admin',
 ]
 
 MIDDLEWARE = [
@@ -131,5 +131,6 @@ MEDIA_URL='/media/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_REDIRECT_URL='home'
+
+LOGIN_REDIRECT_URL='add'
 LOGOUT_REDIRECT_URL='login'
