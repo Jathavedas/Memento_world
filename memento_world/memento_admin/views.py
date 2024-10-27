@@ -8,21 +8,29 @@ from django.contrib.auth import authenticate,login,logout
 
 
 # Create your views here.
-@login_required
+
+
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
 
 def loginview(request):
-    usname=request.POST["username"]
-    passw=request.POST["password"]
-    user=authenticate(request,username=usname,password=passw)
-    if user is not None:
-        login(request,user)
-        return redirect('home')
-    else:
-        return render(request,"login.html",{"msg":"Invalid details"})
+    if request.method == 'POST':
+        usname = request.POST.get("username")
+        passw = request.POST.get("password")
+        user = authenticate(request, username=usname, password=passw)
+        if user is not None:
+            login(request, user)
+            return redirect('memento_admin:add')  # Ensure this matches your URL pattern
+        else:
+            return render(request, "login.html", {"msg": "Invalid details"})
+    else:  # Handle GET requests
+        return redirect('memento_admin:logout')  # Render login form for GET requests
 
+    
+@login_required
 def logout_(request):
     logout(request)
-    return redirect('login')
+    return redirect('memento_admin:login')
 
 
 #add.html
@@ -36,7 +44,7 @@ def upload_item(request):
         form = ItemsForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('add')  # Redirect to the items list after successful upload
+            return redirect('memento_admin:add')  # Redirect to the items list after successful upload
     else:
         form = ItemsForm()
     return render(request, 'adminadd.html', {'form': form})

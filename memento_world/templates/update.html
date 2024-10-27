@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container mt-5">
     <h2 class="text-center mb-4">Search for an Item</h2>
-    <form action="{% url 'update' %}" method="post" class="p-4 border rounded bg-light shadow-sm mb-5">
+    <form action="{% url 'memento_admin:update' %}" method="post" class="p-4 border rounded bg-light shadow-sm mb-5">
         {% csrf_token %}
         <div class="form-group mb-3">
             <label for="name" class="form-label">Enter Item Name:</label>
@@ -24,7 +24,7 @@
 
 <div class="container mb-5">
     <h2 class="text-center mb-4">Update Item Details</h2>
-    <form action="{% url 'updatedata' %}" method="post" enctype="multipart/form-data" class="p-4 border rounded bg-light shadow-sm">
+    <form action="{% url 'memento_admin:updatedata' %}" method="post" enctype="multipart/form-data" class="p-4 border rounded bg-light shadow-sm">
         {% csrf_token %}
         
         <!-- Hidden input to pass the original name -->

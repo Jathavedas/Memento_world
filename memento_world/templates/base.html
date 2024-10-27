@@ -19,12 +19,12 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <div class="navbar-nav">
-                <a class="nav-link px-3 py-2" href="{% url 'add' %}">Add Items</a>
-                <a class="nav-link px-3 py-2" href="{% url 'trophy' %}">View Trophys</a>
-                <a class="nav-link px-3 py-2" href="{% url 'memento' %}">View Mementos</a>
-                <a class="nav-link px-3 py-2" href="{% url 'update' %}">Edit Items</a>
-                <a class="nav-link px-3 py-2" href="{% url 'delete' %}">Delete</a>
-                <a class="nav-link px-3 py-2" href="{% url 'logout' %}">logout</a>
+                <a class="nav-link px-3 py-2" href="{% url 'memento_admin:add' %}">Add Items</a>
+                <a class="nav-link px-3 py-2" href="{% url 'memento_admin:trophy' %}">View Trophys</a>
+                <a class="nav-link px-3 py-2" href="{% url 'memento_admin:memento' %}">View Mementos</a>
+                <a class="nav-link px-3 py-2" href="{% url 'memento_admin:update' %}">Edit Items</a>
+                <a class="nav-link px-3 py-2" href="{% url 'memento_admin:delete' %}">Delete</a>
+                <a class="nav-link px-3 py-2" href="{% url 'memento_admin:logout' %}">logout</a>
                 
             </div>
         </div>

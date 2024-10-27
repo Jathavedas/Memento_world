@@ -23,8 +23,9 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),    
     path('accounts/', include('django.contrib.auth.urls')),
+    
    
-    path('', include('memento_admin.urls')),  
+     path('super/', include(('memento_admin.urls', 'memento_admin'), namespace='memento_admin')),
 ]
 
 urlpatterns+= static(settings.MEDIA_URL ,document_root=settings.MEDIA_ROOT)
