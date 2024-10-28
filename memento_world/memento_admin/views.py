@@ -10,8 +10,6 @@ from django.contrib.auth import authenticate,login,logout
 # Create your views here.
 
 
-from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
 
 def loginview(request):
     if request.method == 'POST':
